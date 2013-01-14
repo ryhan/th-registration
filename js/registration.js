@@ -8,7 +8,7 @@ var apiBaseURL = 'http://register.tartanhacks.com/api/';
 
 // SET UP THE INTIAL SCREEN
 $(function(){ 
-  // Identify grouped elements in the interface
+  // Identify grouped elements in the interface. So beautiful </s>.
   $groups = $('.group');
   $ticketGroup = $($groups[0]);
   $preRegisterGroup = $($groups[1]);
@@ -45,7 +45,7 @@ var appMessages = {
     "<strong>Just a few quick questions. </strong>" +
     "We're thrilled about your upcoming visit to CMU.",
 
-  // Message to be shown after form has been submitted
+  // Messages to be shown after form has been submitted
 
   registered_success:
     "<strong>Congrats,</strong> you've been successfully registered.",
@@ -66,7 +66,7 @@ function getRegistrationTypes(callback){
     callback({
       "PRE": {"active": true, "remaining": 75}, 
       "EXT": {"active": true, "remaining": 50}, 
-      "GRAD": {"active": true, "remaining": 4}, 
+      "GRAD": {"active": true, "remaining": -3}, 
       "GEN": {"active": false, "remaining": 100}
     });
   }else{
@@ -83,7 +83,14 @@ function activateTicketOption(elementID, ticketsAvailable, clickEvent){
   var $ticket =  $('#' + elementID);
   $ticket.removeClass('inactive');
   $ticket.click(clickEvent);
-  $ticket.find('.remaining').html(ticketsAvailable +  " Tickets Left");
+
+  var ticketMessage;
+  if (ticketsAvailable > 0){
+    ticketMessage = ticketsAvailable +  " Tickets Left";
+  }else{
+    ticketMessage = "Join Waitlist"; 
+  }
+  $ticket.find('.remaining').html(ticketMessage);
 }
 
 // Given the registration status, active the given ticket types. 
@@ -147,6 +154,7 @@ function isGen(){
   isUndergrad();
 }
 
+// Styles inputs, binds validation functions, and sets focus to #first_name.
 function setUpForm(){
   $('select').uniform();
   $('#first_name').focus();
