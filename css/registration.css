@@ -370,7 +370,7 @@ input[data-invalid="false"]:focus{
   left: -5px;
 }
 
-#success{
+#success, #waitlist {
   padding: 0 50px 50px 50px;
   font-size: 18px;
   line-height: 32px;

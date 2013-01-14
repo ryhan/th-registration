@@ -14,6 +14,7 @@ $(function(){
   $preRegisterGroup = $($groups[1]);
   $formGroup = $($groups[2]);
   $successGroup = $($groups[3]);
+  $waitlistGroup = $($groups[4]);
 
   $("input[type=checkbox], option").uniform();
   $groups.hide();
@@ -196,9 +197,11 @@ function submitForm(){
        'cmuCollege': (cmuCollege.value || 'NA')
       },
       success: function(data){
-          console.log(data);
-          successMessage();
-          // SHOW SUCCESS MESSAGE
+          if (data.waitlist == false) {
+            successMessage();
+          } else {
+            waitlistMessage();
+          }
       },
       error: function(data){
         alert('An error occurred.');
@@ -226,4 +229,11 @@ function successMessage(){
   $('header').hide();
   $('.ribbon').html("<strong>Congrats,</strong> you've been successfully registered.")
   $successGroup.show();
+}
+
+function waitlistMessage(){
+  $groups.hide();
+  $('header').hide();
+  $('.ribbon').html("<strong>Sorry,</strong> you've been added to the waitlist.")
+  $waitlistGroup.show();
 }
