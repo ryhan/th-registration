@@ -23,6 +23,30 @@ $(function(){
 
 
 /*****************************************************************************
+  USER FACING MESSAGES
+*****************************************************************************/
+
+var appMessages = {
+
+  preregister_ribbon :
+    "<strong>Hey there early bird.</strong> " + 
+    "Just a few quick questions and you're all done.",
+
+  genregister_ribbon: 
+    "<strong>Woohoo! </strong>Just a couple quick questions.",
+
+  gradregister_ribbon:
+    "Just a few more questions. Remember, " +
+    "<strong>Grad students cannot win prizes</strong>",
+
+  extregister_ribbon:
+    "<strong>Just a few quick questions. </strong>" +
+    "We're thrilled about your upcoming visit to CMU.",
+ 
+};
+
+
+/*****************************************************************************
   PRIMARY LOGIC
 *****************************************************************************/
 
@@ -98,11 +122,10 @@ function isPre(){
   // Check on submit if the user can preregister.
   $('#next').click(function(){
     if (valid() == true) { 
-      $('.ribbon').html("<strong>Hey there early bird.</strong> Just a few quick questions and you're all done.");
+      $('.ribbon').html(appMessages.preregister_ribbon);
       isUndergrad();
     }else {
       alert('To register now, select at least one checkbox.')
-      // GENERAL REGISTRATION IS NOT YET OPEN 
     }
     return false;
   });
@@ -110,7 +133,7 @@ function isPre(){
 
 function isGen(){
   regType = 'GEN';
-  $('.ribbon').html("<strong>Woohoo! </strong>Just a couple quick questions.");
+  $('.ribbon').html(appMessages.genregister_ribbon);
   isUndergrad();
 }
 
@@ -137,7 +160,7 @@ function isGrad(){
   regType = 'GRAD';
   $groups.hide();
   $formGroup.show();
-  $('.ribbon').html("Just a few more questions. Remember, <strong>Grad students cannot win prizes</strong>");
+  $('.ribbon').html(appMessages.gradregister_ribbon);
   $('.noncmu').remove();
   $('select').uniform();
   $('#first_name').focus();
@@ -158,7 +181,7 @@ function isOutside(){
   regType = 'EXT';
   $groups.hide();
   $formGroup.show();
-   $('.ribbon').html("<strong>Just a few quick questions.</strong> We're thrilled about your upcoming visit to CMU.");
+   $('.ribbon').html(appMessages.extregister_ribbon);
   $('.cmuOnly').remove();
   $('.gradOnly').remove();
   $('select').uniform();
@@ -209,7 +232,7 @@ function submitForm(){
       }
     });
   }else{
-    alert("Make sure you correctly fill in all fields, and check all checkboxes.")
+    alert("Make sure you fill in all fields and check all checkboxes.")
     return false;
   }
 }
