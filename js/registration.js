@@ -28,6 +28,23 @@ $(function(){
 
 var appMessages = {
 
+  // Messages to be shown before a user picks a ticket category
+
+  not_begun:
+    "<strong>Registration has not yet begun. </strong>" + 
+    "Check below to see when you can register.",
+
+  only_preReg:
+    "<strong>Preregistration is now open. </strong>" +
+    "Check below to see when you can register.",
+
+  gen_regis_started:
+    "<strong>Undergrad registration is now open. </strong>" +
+    "Check below to see when you can register.",
+
+  everything_started:
+    "<strong>Registration is now open. </strong>",
+
   // Messages to be shown while user is filling out form
 
   preregister_ribbon :
@@ -65,9 +82,9 @@ function getRegistrationTypes(callback){
   if (DEV_MODE){
     callback({
       "PRE": {"active": true, "remaining": 75}, 
-      "EXT": {"active": true, "remaining": 50}, 
-      "GRAD": {"active": true, "remaining": -3}, 
-      "GEN": {"active": false, "remaining": 100}
+      "EXT": {"active": false, "remaining": 50}, 
+      "GRAD": {"active": false, "remaining": -3}, 
+      "GEN": {"active": true, "remaining": 100}
     });
   }else{
     $.ajax({
@@ -99,6 +116,18 @@ function handleTicketAvailability(regStatus){
   var genTicketAvailable = regStatus.PRE.remaining + regStatus.GEN.remaining;
 
   $ticketGroup.show();
+
+  if (regStatus.PRE.active == false){
+    $('.ribbon').html(appMessages.not_begun);
+  }
+  else if (regStatus.GEN.active == false){
+    $('.ribbon').html(appMessages.only_preReg);
+  }
+  else if (regStatus.GRAD.active == false || regStatus.EXT.active == false){
+    $('.ribbon').html(appMessages.gen_regis_started);
+  }else{
+    $('.ribbon').html(appMessages.everything_started);
+  }
 
   if (regStatus.PRE.active){
     activateTicketOption('undergrad', genTicketAvailable, isPre);

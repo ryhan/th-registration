@@ -1,9 +1,9 @@
 TartanHacks Registration Client Interface
 ===============
 
-This is the client interface for the TartanHacks 2013 registration systems. To learn more about TartanHacks, check out [TartanHacks.com](http://tartanhacks.com/ "TartanHacks").
-
-For a live demo of this interface, look at [register.TartanHacks.com](http://register.tartanhacks.com/ "TartanHacks Registration").
+This is the client interface for the TartanHacks 2013 registration system. 
+To learn more about TartanHacks, check out [http://tartanhacks.com](http://tartanhacks.com/ "TartanHacks").
+For a live demo of this interface, look at [http://register.tartanhacks.com](http://register.tartanhacks.com/ "TartanHacks Registration").
 
 ## Development Notes
 While developing locally, set `DEV_MODE=true;` in order to use static local JSON instead of calling the external API (which most browsers disallow due to cross-origin requests).
