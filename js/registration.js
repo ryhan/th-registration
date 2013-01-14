@@ -110,7 +110,7 @@ function isPre(){
 
 function isGen(){
   regType = 'GEN';
-  $('.ribbon').html("<strong>CMU Undergraduate Registration.</strong> You're almost done!");
+  $('.ribbon').html("<strong>Woohoo! </strong>Just a couple quick questions.");
   isUndergrad();
 }
 
