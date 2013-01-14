@@ -28,6 +28,8 @@ $(function(){
 
 var appMessages = {
 
+  // Messages to be shown while user is filling out form
+
   preregister_ribbon :
     "<strong>Hey there early bird.</strong> " + 
     "Just a few quick questions and you're all done.",
@@ -42,7 +44,15 @@ var appMessages = {
   extregister_ribbon:
     "<strong>Just a few quick questions. </strong>" +
     "We're thrilled about your upcoming visit to CMU.",
- 
+
+  // Message to be shown after form has been submitted
+
+  registered_success:
+    "<strong>Congrats,</strong> you've been successfully registered.",
+
+  registered_waitlist:
+    "<strong>Sorry,</strong> you've been added to the waitlist.",
+
 };
 
 
@@ -220,11 +230,8 @@ function submitForm(){
        'cmuCollege': (cmuCollege.value || 'NA')
       },
       success: function(data){
-          if (data.waitlist == false) {
-            successMessage();
-          } else {
-            waitlistMessage();
-          }
+        if (data.waitlist) waitlistMessage();
+        else successMessage();
       },
       error: function(data){
         alert('An error occurred.');
@@ -250,13 +257,13 @@ function validateForm(){
 function successMessage(){
   $groups.hide();
   $('header').hide();
-  $('.ribbon').html("<strong>Congrats,</strong> you've been successfully registered.")
+  $('.ribbon').html(appMessages.registered_success);
   $successGroup.show();
 }
 
 function waitlistMessage(){
   $groups.hide();
   $('header').hide();
-  $('.ribbon').html("<strong>Sorry,</strong> you've been added to the waitlist.")
+  $('.ribbon').html(appMessages.registered_waitlist);
   $waitlistGroup.show();
 }
