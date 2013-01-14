@@ -51,7 +51,7 @@ var appMessages = {
     "<strong>Congrats,</strong> you've been successfully registered.",
 
   registered_waitlist:
-    "<strong>Sorry,</strong> you've been added to the waitlist.",
+    "<strong>Sorry,</strong> you've been added to the wait list.",
 
 };
 
@@ -135,7 +135,7 @@ function isPre(){
       $('.ribbon').html(appMessages.preregister_ribbon);
       isUndergrad();
     }else {
-      alert('To register now, select at least one checkbox.')
+      alert('To register now, select at least one check box.')
     }
     return false;
   });
@@ -147,23 +147,29 @@ function isGen(){
   isUndergrad();
 }
 
+function setUpForm(){
+  $('select').uniform();
+  $('#first_name').focus();
+
+  // Give color based validation queues
+  var validate_input = function(){ jsfvRealtime(this);};
+  
+  // Adjust color of submit button based on whether form is valid.
+  var updateSubmitButton = function(){
+    if (validateForm()) $('#submit').removeClass('inactive');
+    else $('#submit').addClass('inactive');
+  };
+
+  $('input[type=text], input[type=email]').blur(validate_input);
+  $('input').change(updateSubmitButton);
+}
+
 function isUndergrad(){
   $groups.hide();
   $formGroup.show();
   $('.noncmu').remove();
   $('.gradOnly').remove();
-  $('select').uniform();
-  $('#first_name').focus();
-  $('input[type=text], input[type=email]').blur(function(){
-    jsfvRealtime(this);
-  });
-  $('input').change(function(){
-    if (validateForm() == true){
-      $('#submit').removeClass('inactive');
-    }else{
-      $('#submit').addClass('inactive');
-    }
-  });
+  setUpForm();
 }
 
 function isGrad(){
@@ -172,19 +178,7 @@ function isGrad(){
   $formGroup.show();
   $('.ribbon').html(appMessages.gradregister_ribbon);
   $('.noncmu').remove();
-  $('select').uniform();
-  $('#first_name').focus();
-
-  $('input[type=text], input[type=email]').blur(function(){
-    jsfvRealtime(this);
-  });
-  $('input').change(function(){
-    if (validateForm() == true){
-      $('#submit').removeClass('inactive');
-    }else{
-      $('#submit').addClass('inactive');
-    }
-  });
+  setUpForm();
 }
 
 function isOutside(){
@@ -194,22 +188,11 @@ function isOutside(){
    $('.ribbon').html(appMessages.extregister_ribbon);
   $('.cmuOnly').remove();
   $('.gradOnly').remove();
-  $('select').uniform();
-  $('#first_name').focus();
-  $('input[type=text], input[type=email]').blur(function(){
-    jsfvRealtime(this);
-  });
-  $('input').change(function(){
-    if (validateForm() == true){
-      $('#submit').removeClass('inactive');
-    }else{
-      $('#submit').addClass('inactive');
-    }
-  });
+  setUpForm();
 }
 
 function submitForm(){
-  if (validateForm() == true){
+  if (validateForm()){
     $('.btn').addClass('depressed');
 
     var university = ($('#university')[0] || {}),
@@ -239,7 +222,7 @@ function submitForm(){
       }
     });
   }else{
-    alert("Make sure you fill in all fields and check all checkboxes.")
+    alert("Make sure you fill in all fields and check all check boxes.")
     return false;
   }
 }
