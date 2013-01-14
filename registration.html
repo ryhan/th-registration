@@ -2,8 +2,15 @@
 <html>
 <head>
   <title>TartanHacks Registration</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/defaults.css">
   <link rel="stylesheet" type="text/css" href="css/registration.css">
-  <script src="registration.js"></script>
+  <script src="libs/jquery.js"></script>
+  <script src="libs/jquery.uniform.js"></script>
+  <link rel="stylesheet" href="libs/uniform.default.css" type="text/css"
+media="screen" charset="utf-8" />
+  <script src="js/jsfv.js"></script>
+  <script src="js/registration.js"></script>
 </head>
 <body>
 
@@ -14,37 +21,178 @@
 
 <div class="modal">
   <header>
-    <img src="/"/>
+    <img src="img/register.png"/>
   </header>
+
   <div class="ribbon">
-    Registration has not yet begun. 
+    <strong>Registration has not yet begun.</strong>
     Check below to see when you can register.
   </div>
-  <form>
-    <h2>Who are you?</h2>
 
+  <form>
+    <div class="group">
     <div class="studentGroup" id="cmuStudents">
-      <div class="bigButton">
-        <span>Undergraduate</span>
-        <small>Available Jan 17th at 7pm</small>
+      <div id="undergrad" class="bigButton inactive">
+        <img src="img/stripe.png"/>
+        <div class="title">CMU Undergrad</div>
+        <div class="remaining"></div>
+        <div class="opens">Available Jan 14</div>
       </div>
-      <div class="bigButton">
-        <span>Graduate</span>
-        <small>Available Jan 17th at 7pm</small>
+      <div id="grad" class="bigButton inactive">
+        <img src="img/stripe.png"/>
+        <div class="title">CMU Graduate</div>
+        <div class="remaining"></div>
+        <div class="opens">Available Jan 17</div>
       </div>
     </div>
     
     <div class="studentGroup">
-      <div class="bigButton">
-        <span>Other Colleges</span>
-        <small>Available Jan 17th at 7pm</small>
+      <div id="outside" class="bigButton inactive">
+        <img src="img/stripe.png"/>
+        <div class="title">Other Colleges</div>
+        <div class="remaining"></div>
+        <div class="opens">Available Jan 17</div>
+      </div>
+    </div>
+    </div>
+
+    <div class="group">
+    <div class="prompt">
+      <!-- PRE REGISTRATION PROMPT -->
+      <!--
+      <div class="ribbon">
+        <strong>General Registration opens January 16.</strong><br/>
+        Select students may preregister.
+      </div><br/>
+    -->
+      <div class="checklist">
+        <div class="prereg">
+          <strong>General Registration does not open until 7pm, January 16</strong><br/>
+          Students who fit either of the criteria below can register now.
+          <img src="img/calendaricon.png"/>
+        </div>
+        <ul>
+          <li>
+            <input id="freshman" type="checkbox" name="freshman" value="false">
+            I am a freshman at Carnegie Mellon.</li>
+          <li>
+            <input id="woman" type="checkbox" name="woman" value="false">
+          I am a woman involved in Women@SCS or Women in ECE.</li>
+        </ul>
+      </div>
+      <div class="btnContainer">
+        <div id="next" class="btn inactive">Next</div>
+      </div>
+    </div>
+    </div>
+
+    <div class="group">
+    <div class="steps">
+      <div class="step">
+        <h2>Step 1</h2>
+        <span>First Name</span> 
+        <input class="JSFV-required" id="first_name" type="text" placeholder="First Name"/>
+        <span>Last Name</span>
+        <input class="JSFV-required" id="last_name" type="text" placeholder="Last Name"/>
+        <span>Email (use a .edu address)</span>
+        <input class="JSFV-required JSFV-email" id="email" type="email" placeholder="Email Address"/>
+      </div>
+      <div class="step">
+        <h2>Step 2</h2>
+
+        <!-- UNIVERSITY : ONLY SHOW TO NON-CMU STUDENTS -->
+        <span class="noncmu">University</span>
+        <select class="noncmu" id="university" name="university">
+          <option value="CMU">CMU</option>
+          <option value="PITT">Pitt</option>
+          <option value="PENN">Penn</option>
+          <option value="PRINCETON">Princeton</option>
+          <option value="MIT">MIT</option>
+          <option value="CORNELL">Cornell</option>
+        </select><br class="noncmu"/>
+
+        <!-- COLLEGE : ONLY SHOW TO CMU STUDENTS -->
+        <span class="cmuOnly">College</span>
+        <select class="cmuOnly" id="cmuCollege" name="cmuCollege">
+          <option value="NA">Not Applicable</option>
+          <option value="CIT">CIT</option>
+          <option value="CFA">CFA</option>
+          <option value="DCHS">DCHS</option>
+          <option value="TPR">Tepper</option>
+          <option value="HNZ">Heinz</option>
+          <option value="SCS">SCS</option>
+        </select><br class="cmuOnly"/>
+
+        <!-- GRAD YEAR -->
+        <span>Graduation Year</span>
+        <select id="gradYear" name="gradYear">
+          <option value="-1">Not Applicable</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+        </select><br/>
+        <!--
+      </div>
+      <div class="step">
+        <h2>Step 3</h2>
+      -->
+         <span>T-Shirt Size</span>
+         <select id="tshirtSize" name="tshirtSize">
+          <option value="MS">Men's Small</option>
+          <option value="MM">Men's Medium</option>
+          <option value="ML">Men's Large</option>
+          <option value="MXL">Men's Extra Large</option>
+          <option value="FS">Women's Small</option>
+          <option value="FM">Women's Medium</option>
+          <option value="FL">Women's Large</option>
+          <option value="FXL">Women's Extra Large</option>
+        </select><br/>
+        <span>Dietary Restrictions</span> <input id="dietary" type="text"/><br/>
       </div>
     </div>
 
-    <div class="nextButton">Next</div>
+    <footer>
+       <div class="noncmu message">
+      <strong>Visiting from out of town?</strong>
+      Take a look at our
+      <a href="http://tartanhacks.com/reinbursement">
+        Travel Reimbursement Program</a>.
+    </div>
+      <div class="checklist">
+      <h2> Final Checklist</h2>
+        <ul>
+          <li class="gradOnly">
+            <input type="checkbox" class="required" value="false">
+            I understand that as a graduate student, I am <strong>not eligible for prizes</strong>. </li>
+          <li>
+            <input type="checkbox" class="required" value="false">
+            I understand <strong>I must confirm my ticket</strong> per the TartanHacks 2013 Rules,
+             or lose my spot.</li>
+          <li>
+            <input type="checkbox" class="required" value="false">
+            I have read and agree to the rules posted on the TartanHacks website.</li>
+        </ul>
+      </div>
+      <div class="btnContainer">
+        <div id="submit" class="btn inactive" onclick="submitForm();">Submit</div>
+      </div>
+    </footer>
+    </div>
   </form>
 
+
+<div class="group" id="success">
+  You are now registered for TartanHacks 2013.<br/>
+  We just sent you an email with more details.
 </div>
+
+</div>
+
 
 </body>
 </html>

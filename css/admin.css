@@ -1,0 +1,241 @@
+.chart{
+  display: inline-block;
+  margin: 0;
+  position: absolute;
+  vertical-align: text-top;
+}
+
+#chart_1{
+  top: 0;
+  left: 0;
+}
+#chart_2{
+  top: 0;
+  right: -50px;
+}
+
+nav{
+  text-align: right;
+}
+
+nav h1{ 
+  float: left;
+}
+
+nav a{
+  color: #555;
+  text-decoration: none;
+}
+
+.modal{
+  background-color: white;
+  border: 1px solid #666;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.modal header{
+  background: -webkit-linear-gradient(top, #DDD, #FFF);
+  background-color: #E0E0E0;
+  border-bottom: 1px solid #666;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  height: 200px;
+}
+
+.ribbon{
+  background: -webkit-linear-gradient(top, #E64F55, #AB2F34);
+  background-color: #AB2F34;
+  border-bottom: 1px solid #570C0F;
+  box-shadow: 
+    inset 0 1px 0 #FF6B70,
+    0 -1px 0 #570C0F;
+  color: #EBB5AF;
+  padding: 10px 20px;
+  padding: 5px 20px;
+  text-align: left;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+}
+  .ribbon input[type="text"]{
+    font-family: HelveticaNeue, 'Helvetica Neue', HelveticaNeueRoman, HelveticaNeue-Roman, 'Helvetica Neue Roman', Helvetica, Tahoma, Geneva, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 200;
+    font-weight: bold;
+    line-height: 26px;
+    background-color: #EEE;
+    border: 1px solid #570B0F;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px #953035;
+    color: #66080B;
+    display: inline-block;
+    margin-right: 8px;
+    width: 250px;
+    padding: 2px 12px;
+    outline: none;
+  }
+  .ribbon .stat{
+    background-color: #A8363C;
+    border: 1px solid #570B0F;
+    border-radius: 4px;
+    box-shadow: 
+      inset 0 2px 4px #953035;
+    display: inline-block;
+    margin-right: 8px;
+    min-width: 100px;
+    padding: 2px 12px;
+
+    font-size: 11px;
+    text-transform: uppercase;    
+    text-shadow: none;
+  }
+    .ribbon .stat strong{
+      font-size: 16px;
+      margin-right: 2px;
+      text-shadow: 0 -1px 0 #000;
+    }
+
+.records{
+  height: 400px;
+  position: relative;
+}
+.records .sidebar{
+  background-color: #FFF;
+  border-left: 1px solid #888;
+  box-shadow: inset 2px 0 8px rgba(0,0,0,0.2);
+  height: 400px;
+  width: 200px;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+.records ul{
+  overflow-y: scroll;
+  box-sizing: border-box;
+  height: 400px;
+  width: 400px;
+  list-style-type: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.records li{
+  border-bottom: 1px solid #DDD;
+  color: #444;
+  padding: 10px 20px;
+  padding-left: 60px;
+}
+  .records li a,
+  .records li span{
+    background: -webkit-linear-gradient(top, #FFF, #DDD);
+    background-color: #EEE;
+    border: 1px solid #3C6EC4;
+    border-radius: 5px;
+    color: #3C6EC4;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 12px;
+    padding: 4px 5px;
+    text-decoration: none;
+  }
+
+form{
+  padding: 20px;
+}
+
+.studentGroup{
+  display: inline-block;
+  padding: 20px;
+  vertical-align: text-top;
+}
+  #cmuStudents{
+    background-color: #FFEAEB;
+    box-shadow: 0 -1px 0 #C53C42;
+  }
+.bigButton{
+  
+  background: -webkit-linear-gradient(top, #FFF, #DDD);
+  background-color: #EEE;
+  border: 1px solid #C53B42;
+  border-radius: 6px;
+  box-shadow:
+    inset 0 -3px 0 rgba(0,0,0,0.1),
+    inset 0 -3px 3px rgba(0,0,0,0.1),
+    inset 0 5px 5px #FFF;
+  
+  cursor: pointer;
+  display: inline-block;
+  height: 80px;
+  margin: 0;
+  padding: 25px 10px;
+  padding-left: 35px;
+  position: relative;
+  text-align: left;
+  vertical-align: text-top;
+  width: 150px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+  .bigButton.inactive{
+    background: -webkit-linear-gradient(top, #DDD, #EEE);
+    border: 1px solid #888;
+    box-shadow: 
+      inset 0 3px 0 rgba(0,0,0,0.1);
+    padding: 25px 20px;
+  }
+    .bigButton.inactive img{
+      display: none;
+    }
+  .bigButton:hover{
+     background: -webkit-linear-gradient(top, #FFF, #F6D6D7);
+     background-color: #FFF;
+     box-shadow:
+      inset 0 -3px 0 rgba(0,0,0,0.1),
+      inset 0 -2px 2px rgba(0,0,0,0.1),
+      inset 0 20px 15px #FFF;
+  }
+  .bigButton:active,
+  .bigButton.selected{
+    background: -webkit-linear-gradient(top, #C69093, #F6D6D7);
+    background-color: #FFF;
+    box-shadow:
+      inset 0 0 4px rgba(0,0,0,0.4),
+      inset 0 3px 5px rgba(0,0,0,0.2);
+  }
+  .bigButton img{
+    
+    box-sizing: border-box;
+    width: 160px;
+    height: 90px;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+  
+    width: 150px;
+    height: 80px;
+    top: -1px;
+    left: -1px;
+  }
+  .bigButton .title{
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: bold;
+    color: #9F0A1B;
+  }
+  .bigButton .remaining,
+  .bigButton .opens{
+    color: #702F34;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .bigButton .opens{
+  }
+  #cmuStudents .bigButton:first-child{
+    margin-right: 20px;
+  }
